@@ -1,0 +1,21 @@
+#!/bin/bash
+interactive_directory(){
+cd $dir_name
+if [[ "$process" == "ana" ]]
+then
+	grep -wirc $input .
+fi
+if [[ "$process" == "del" ]]
+then
+	find . -size +$input -delete
+fi
+if [[ "$process" == "arr" ]]
+then
+	mv *.$input ../Task2
+fi
+}
+read -p "Please enter the directory name>> " dir_name
+read -p "Please enter which process you want to excute (ana, del, arr)>> " process
+read -p "Please enter a: regex to count or file size to delete files bigger than it or file type to be moved>> " input
+interactive_directory dir_name process input
+ls
